@@ -24,6 +24,7 @@ from nhs_number import (
     calculate_checksum,
     is_valid,
     standardise_format,
+    calculate_checksum_mod10,
 )
 from nhs_number.constants import (
     FULL_RANGE,
@@ -96,10 +97,20 @@ def test_standardise_from_int_vectors(case):
 
 
 @pytest.mark.parametrize(
+    "case", _cases("calculate_checksum_mod10"), ids=lambda c: c["identifier"]
+)
+def test_checksum_mod10_vectors(case):
+    assert calculate_checksum_mod10(case["identifier"]) == case["checksum"]
+
+
+@pytest.mark.parametrize(
     "case", _cases("is_valid"), ids=lambda c: repr(c["input"])
 )
 def test_is_valid_vectors(case):
-    assert is_valid(case["input"]) is case["valid"]
+    assert (
+        is_valid(case["input"], check_mod10=case.get("check_mod10", True))
+        is case["valid"]
+    )
 
 
 @pytest.mark.parametrize(
