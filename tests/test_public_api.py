@@ -81,6 +81,7 @@ def test_public_callables_are_callable():
         "standardise_format",
         "normalise_number",
         "calculate_checksum",
+        "calculate_checksum_mod10",
         "NhsNumber",
     ]:
         assert callable(getattr(nhs_number, name)), f"{name} is not callable"

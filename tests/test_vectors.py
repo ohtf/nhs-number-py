@@ -107,7 +107,10 @@ def test_checksum_mod10_vectors(case):
     "case", _cases("is_valid"), ids=lambda c: repr(c["input"])
 )
 def test_is_valid_vectors(case):
-    assert is_valid(case["input"]) is case["valid"]
+    assert (
+        is_valid(case["input"], check_mod10=case.get("check_mod10", True))
+        is case["valid"]
+    )
 
 
 @pytest.mark.parametrize(
