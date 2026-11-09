@@ -24,8 +24,6 @@ classifiers = [
     'Intended Audience :: Healthcare Industry',
     'Intended Audience :: Science/Research',
     'Topic :: Scientific/Engineering :: Medical Science Apps.',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3.11',
     'Programming Language :: Python :: 3.12',
@@ -34,9 +32,9 @@ classifiers = [
     ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^9.0.0"
 pytest-cov = "^7.1.0"
 black = "^26.0.0"

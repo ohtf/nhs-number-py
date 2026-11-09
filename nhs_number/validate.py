@@ -10,9 +10,8 @@ Contributors
 * Marcus Baw <marcus@marcusbaw.com>
 """
 
-# PEP 604 union syntax (`int | None`) is 3.10+; defer annotation evaluation
-# so we keep working on Python 3.8 and 3.9. Remove this once 3.8/3.9 are
-# dropped from the test matrix.
+# PEP 604 union syntax (`int | None`) requires Python 3.10, the project's
+# minimum supported version.
 from __future__ import annotations
 from datetime import datetime
 from nhs_number.standardise import standardise_format

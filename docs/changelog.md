@@ -7,6 +7,7 @@ authors: Dr Marcus Baw
 
 - **Breaking change:** Scotland's CHI numbers can now use either a modulus 11 or a modulus 10 check digit. `is_valid()` therefore accepts some CHI numbers that version 2.x rejected. Pass `check_mod10=False` to retain the previous modulus-11-only validation rule.
 - The modulus 10 rule applies only to Scotland's CHI numbers. NHS Numbers in England, Wales, and the Isle of Man, Health and Care Numbers in Northern Ireland, and Individual Health Identifiers in Ireland continue to use modulus 11 only.
+- Python 3.10 is now the minimum supported version.
 
 ## 2.2.1
 

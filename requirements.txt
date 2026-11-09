@@ -1,9 +1,9 @@
 # formatting
-black
+black>=26.0.0,<27.0.0
 
 # testing
-pytest
-pytest-cov
+pytest>=9.0.0,<10.0.0
+pytest-cov>=7.1.0,<8.0.0
 
 #################### DOCS ####################
 # documentation site - Zensical
