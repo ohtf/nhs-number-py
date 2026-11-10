@@ -2,6 +2,12 @@
 
 Python package to provide utilities for NHS Numbers, including validity checks, normalisation, and generation.
 
+## Project stewardship
+
+`nhs-number` is managed by the [Open Health Technology Foundation (CIC)](https://openhealthtechnology.org/) (OHTF).
+
+Major announcements affecting users or contributors, such as releases with breaking changes or a change of project stewardship, are also published on [openhealthtechnology.org](https://openhealthtechnology.org/). Website updates are made in [ohtf/openhealthtechnology.org-website](https://github.com/ohtf/openhealthtechnology.org-website).
+
 ## Package Information
 
 <table>
