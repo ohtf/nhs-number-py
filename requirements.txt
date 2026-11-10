@@ -1,13 +1,15 @@
+# packaging
+poetry==2.5.1
+
 # formatting
-black>=26.0.0,<27.0.0
+black>=26.10.1,<27.0.0
 
 # testing
-pytest>=9.0.0,<10.0.0
+pytest>=9.2.0,<10.0.0
 pytest-cov>=7.1.0,<8.0.0
 
-#################### DOCS ####################
-# documentation site - Zensical
-zensical
+# documentation - requires Python 3.11+
+zensical>=0.1.0,<0.2.0; python_version >= "3.11"
 
 # The following MkDocs plugins were removed because Zensical has no plugin
 # system yet and cannot consume them. Re-add when Zensical supports them:

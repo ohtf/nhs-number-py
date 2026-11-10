@@ -29,21 +29,28 @@ classifiers = [
     'Programming Language :: Python :: 3.12',
     'Programming Language :: Python :: 3.13',
     'Programming Language :: Python :: 3.14',
+    'Programming Language :: Python :: 3.15',
     ]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^9.0.0"
+pytest = "^9.2.0"
 pytest-cov = "^7.1.0"
-black = "^26.0.0"
+black = "^26.10.1"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+zensical = { version = "^0.1.0", python = ">=3.11" }
 
 [tool.poetry.urls]
 "Issue Tracker" = "https://github.com/ohtf/nhs-number-py/issues"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.5.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
