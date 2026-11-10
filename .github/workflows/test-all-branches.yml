@@ -9,6 +9,9 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches: "**"
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -42,3 +45,13 @@ jobs:
         run: |
           pip install black
           black --check .
+
+  all-checks:
+    name: All checks
+    needs: build
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify every test-matrix job passed
+        if: needs.build.result != 'success'
+        run: exit 1
