@@ -2,6 +2,11 @@
 
 `nhs-number` is a Python reference library for standardising, validating, generating, and describing UK NHS-family numbers. It is not a patient-record system: never add real patient identifiers to code, fixtures, documentation, issues, or pull requests.
 
+## Stewardship And Announcements
+
+- This project is managed by the Open Health Technology Foundation (CIC) (OHTF).
+- When a major announcement is warranted, including a breaking release, security advisory, or a change in project stewardship, publish it on [openhealthtechnology.org](https://openhealthtechnology.org/) through [ohtf/openhealthtechnology.org-website](https://github.com/ohtf/openhealthtechnology.org-website), alongside the repository communication.
+
 ## Read First
 
 - [README.md](README.md) - project purpose and public API.
