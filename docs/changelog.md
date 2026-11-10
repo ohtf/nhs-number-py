@@ -10,7 +10,7 @@ authors: Dr Marcus Baw
 
 ## 2.2.1
 
-- Updates package metadata and documentation links for the transfer to the Open Health Tools Foundation. No library behaviour changes.
+- Updates package metadata and documentation links for the transfer to the Open Health Technology Foundation (CIC). No library behaviour changes.
 
 ## 2.2.0
 
