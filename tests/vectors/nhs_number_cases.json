@@ -38,6 +38,11 @@
   ],
   "standardise_from_int": [
     { "input": 9876543210, "output": "9876543210" },
+    {
+      "input": 607230002,
+      "output": "0607230002",
+      "note": "a nine-digit integer is left-padded to preserve a leading-zero CHI number"
+    },
     { "input": 0, "output": "0000000000" },
     { "input": -1, "output": "", "note": "negative" },
     { "input": 99999999999, "output": "", "note": "more than 10 digits" }
@@ -48,6 +53,11 @@
       "input": 9876543210,
       "valid": true,
       "note": "integer input is zero-padded then validated"
+    },
+    {
+      "input": 607230002,
+      "valid": true,
+      "note": "a leading-zero CHI number remains valid when supplied as an integer"
     },
     {
       "input": 0,
@@ -115,6 +125,13 @@
       "valid": true,
       "note": "a CHI using the modulus 10 check digit remains valid when Scotland is required"
     },
+    {
+      "input": "0101201234",
+      "region": "SCOTLAND",
+      "check_mod10": false,
+      "valid": false,
+      "note": "the compatibility flag also disables the modulus 10 rule when a region is required"
+    },
     { "input": "3462950622", "region": "NORTHERN_IRELAND", "valid": true },
     { "input": "5726600533", "region": "RESERVED", "valid": true },
     { "input": "8453035113", "region": "EIRE", "valid": true },
@@ -125,10 +142,20 @@
     { "number": "0101011113", "region": "SCOTLAND" },
     { "number": "3462950622", "region": "NORTHERN_IRELAND" },
     { "number": "4000000632", "region": "ENGLAND_WALES_IOM" },
+    {
+      "number": "6000000006",
+      "region": "ENGLAND_WALES_IOM",
+      "note": "the combined England/Wales/IoM region includes both allocated ranges"
+    },
     { "number": "5726600533", "region": "RESERVED" },
     { "number": "8453035113", "region": "EIRE" },
     { "number": "0000499927", "region": "UNALLOCATED" },
-    { "number": "9234760735", "region": "SYNTHETIC" }
+    { "number": "9234760735", "region": "SYNTHETIC" },
+    {
+      "number": "0000000000",
+      "region": null,
+      "note": "a checksum-valid number below the full range has no region"
+    }
   ],
   "range_boundaries": [
     { "range": "UNALLOCATED_1", "start": 10, "end": 99999999 },

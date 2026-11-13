@@ -120,14 +120,24 @@ def test_is_valid_vectors(case):
 )
 def test_is_valid_for_region_vectors(case):
     region = REGION_MAP[case["region"]]
-    assert is_valid(case["input"], for_region=region) is case["valid"]
+    assert (
+        is_valid(
+            case["input"],
+            for_region=region,
+            check_mod10=case.get("check_mod10", True),
+        )
+        is case["valid"]
+    )
 
 
 @pytest.mark.parametrize(
     "case", _cases("region_of"), ids=lambda c: c["number"]
 )
 def test_region_of_vectors(case):
-    assert NhsNumber(case["number"]).region is REGION_MAP[case["region"]]
+    expected_region = (
+        None if case["region"] is None else REGION_MAP[case["region"]]
+    )
+    assert NhsNumber(case["number"]).region is expected_region
 
 
 @pytest.mark.parametrize(
@@ -144,4 +154,8 @@ def test_region_vectors_cover_every_public_region():
     assert {case["region"] for case in _cases("is_valid_for_region")} == (
         expected_regions
     )
-    assert {case["region"] for case in _cases("region_of")} == expected_regions
+    assert {
+        case["region"]
+        for case in _cases("region_of")
+        if case["region"] is not None
+    } == expected_regions
