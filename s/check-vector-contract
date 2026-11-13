@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+#
+# Check that a change to the language-neutral behaviour has an accompanying
+# update to the shared JSON vectors. Run with the base and head revisions of a
+# pull request: s/check-vector-contract <base> <head>.
+#
+# Set VECTOR_EXEMPT=true only for a deliberate exemption, such as a refactor
+# or a Python-only behaviour that cannot be part of the cross-language
+# contract. In GitHub Actions, the vector-exempt PR label supplies this value.
+
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+if [[ $# -ne 2 ]]; then
+    echo "Usage: s/check-vector-contract <base-revision> <head-revision>" >&2
+    exit 2
+fi
+
+changed_files="$(git diff --name-only "$1...$2")"
+core_contract_files='^nhs_number/(constants|details|standardise|validate)\.py$'
+vector_file='^tests/vectors/nhs_number_cases\.json$'
+
+if ! grep -Eq "$core_contract_files" <<<"$changed_files"; then
+    echo "No shared-contract source files changed."
+    exit 0
+fi
+
+if grep -Eq "$vector_file" <<<"$changed_files"; then
+    echo "Shared JSON vector updated with shared-contract source."
+    exit 0
+fi
+
+if [[ "${VECTOR_EXEMPT:-}" == "true" ]]; then
+    echo "Shared vector update exempted by the vector-exempt pull-request label."
+    exit 0
+fi
+
+cat >&2 <<'EOF'
+Changes to nhs_number/constants.py, details.py, standardise.py, or validate.py
+must update tests/vectors/nhs_number_cases.json when they affect the shared,
+language-neutral contract.
+
+For a deliberate exemption (for example, a refactor or Python-only behaviour),
+ask a maintainer to apply the vector-exempt pull-request label and explain why
+in the pull request.
+EOF
+exit 1
