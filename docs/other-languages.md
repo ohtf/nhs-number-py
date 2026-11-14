@@ -20,12 +20,14 @@ It is plain JSON, with one section per behaviour, each a list of inputs and thei
 | `calculate_checksum` | the Modulus 11 check digit for an identifier, including the `null` cases and the special checksum-of-10 case |
 | `standardise` | cleaning up string input - spaces, hyphens, surrounding whitespace, and what counts as unparseable |
 | `standardise_from_int` | integer input, including zero-padding and out-of-range integers |
-| `is_valid` | overall validity, including formatted input and CHI date-of-birth rejection |
-| `is_valid_for_region` | validity when a specific region is required |
+| `is_valid` | overall validity, including formatted input, CHI date-of-birth rejection, and the optional modulus-10 compatibility switch |
+| `is_valid_for_region` | validity when a specific region is required, including the compatibility switch |
 | `region_of` | which region a number falls into |
 | `range_boundaries` | the exact start and end of every named range, including unallocated, reserved, synthetic, and the full numeric range |
 
 Each case may carry a `note` explaining *why* it is what it is, which is often the most useful part - several of them encode decisions that are not obvious from the algorithm alone.
+
+`is_valid` and `is_valid_for_region` cases may set `check_mod10`; when omitted, it is `true`. `region_of` may use `null` where a well-formed number falls outside every known range.
 
 If your implementation passes these vectors, it agrees with this library. That is the whole point: a shared, checkable definition of correct, rather than each implementation drifting on its own.
 

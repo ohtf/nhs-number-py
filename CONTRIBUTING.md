@@ -37,7 +37,7 @@ The 100% requirement is deliberate but is treated as a floor, not a goal - see [
 black .
 ```
 
-**3. The shared test vectors.** `tests/vectors/nhs_number_cases.json` freezes the library's core behaviour (checksum, standardisation, validation, region detection, range boundaries) in a language-agnostic form, so that ports in other languages can be checked against the same contract. If you intentionally change any of that behaviour, update the vectors in the same pull request and explain why.
+**3. The shared test vectors.** `tests/vectors/nhs_number_cases.json` freezes the library's core behaviour (checksum, standardisation, validation, region detection, range boundaries) in a language-agnostic form, so that ports in other languages can be checked against the same contract. Pull request CI requires a vector update when core contract code changes. If a change is only a refactor or Python-specific behaviour, ask a maintainer to apply the `vector-exempt` label and explain the exemption in the pull request.
 
 Optionally, `tox` will run the suite across the supported Python versions plus the formatting check, if you have those interpreters available:
 
